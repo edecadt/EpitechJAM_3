@@ -20,7 +20,7 @@ export const AuthContextProvider = ({ children }) => {
     } catch (error) {}
   };
 
-  const register = async (email, password, username, profileUrl) => {
+  const register = async (email, password, username) => {
     try {
     } catch (error) {}
   };
