@@ -1,22 +1,41 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, StyleSheet } from "react-native";
 import React from "react";
 import { useAuth } from "@/context/authContext";
 import FireButton from "@/components/FireButton";
 
 export default function Home() {
-  const { logout, user } = useAuth();
+    const { logout, user } = useAuth();
 
   // console.log("User data: ", user);
   const handleLogout = async () => {
     await logout();
   };
-  return (
-    <View>
-      <Text>Home</Text>
-      <Pressable onPress={handleLogout}>
-        <Text>Logout</Text>
-      </Pressable>
-      <FireButton />
+return (
+    <View style={{ flex: 1 }}>
+        <Text>Home</Text>
+        <Pressable onPress={handleLogout}>
+            <Text>Logout</Text>
+        </Pressable>
+        <FireButton />
     </View>
-  );
+);
 }
+
+const style = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+        position: 'absolute',
+        right: 20, // Adjust this value as needed
+        bottom: 20, // Adjust this value as needed
+    },
+    image: {
+        width : 200,
+        height : 200,
+        resizeMode: 'contain',
+    },
+    content_text: {
+        fontWeight: "bold"
+    }
+});
