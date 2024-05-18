@@ -36,11 +36,8 @@ Develop a mobile application that allows users to quickly report fires using geo
 
 ### Front-end:
 - **Framework:** React Native for cross-platform mobile application (iOS and Android).
-- **Mapping API:** Google Maps API, Mapbox, or Leaflet for the interactive map.
 
 ### Back-end:
-- **API:** Node.js with Express to handle message sending requests.
-- **Geolocation Service:** Google Maps API to obtain GPS coordinates.
 - **Database:** Firebase for real-time storage and updates of fire reports.
 
 ## Prerequisites
