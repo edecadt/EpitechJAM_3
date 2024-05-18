@@ -5,7 +5,7 @@ import { useAuth } from "@/context/authContext";
 export default function Home() {
   const { logout, user } = useAuth();
 
-  console.log("User data: ", user);
+  // console.log("User data: ", user);
   const handleLogout = async () => {
     await logout();
   };
