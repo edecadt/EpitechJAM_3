@@ -2,6 +2,7 @@ import { View, Text, Pressable, StyleSheet } from "react-native";
 import React from "react";
 import { useAuth } from "@/context/authContext";
 import FireButton from "@/components/FireButton";
+import Map from "@/components/MapView";
 
 export default function Home() {
     const { logout, user } = useAuth();
@@ -12,10 +13,7 @@ export default function Home() {
   };
 return (
     <View style={{ flex: 1 }}>
-        <Text>Home</Text>
-        <Pressable onPress={handleLogout}>
-            <Text>Logout</Text>
-        </Pressable>
+        <Map />
         <FireButton />
     </View>
 );
