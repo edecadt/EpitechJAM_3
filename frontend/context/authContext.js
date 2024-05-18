@@ -18,7 +18,7 @@ export const AuthContextProvider = ({ children }) => {
     const unsub = onAuthStateChanged(auth, (user) => {
       if (user) {
         setIsAuthenticated(true);
-        setUser(user);
+        setUser({ ...user });
         updateUserData(user.uid);
       } else {
         setIsAuthenticated(false);
@@ -28,13 +28,35 @@ export const AuthContextProvider = ({ children }) => {
     return unsub;
   }, []);
 
+  const increaseAlertCount = async () => {
+    const docRef = doc(db, "users", user.userId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      let data = docSnap.data();
+      await setDoc(docRef, {
+        ...data,
+        alertCount: data.alertCount + 1,
+      });
+      setUser({
+        ...user,
+        alertCount: data.alertCount + 1,
+      });
+    }
+  };
+
   const updateUserData = async (userId) => {
     const docRef = doc(db, "users", userId);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
       let data = docSnap.data();
-      setUser({ ...user, username: data.username, userId: data.userId });
+      setUser({
+        ...user,
+        username: data.username,
+        userId: data.userId,
+        alertCount: data.alertCount,
+      });
     }
   };
 
@@ -82,6 +104,7 @@ export const AuthContextProvider = ({ children }) => {
 
       await setDoc(doc(db, "users", response?.user.uid), {
         username,
+        alertCount: 0,
         userId: response?.user.uid,
       });
       return {
@@ -112,6 +135,7 @@ export const AuthContextProvider = ({ children }) => {
         login,
         logout,
         register,
+        increaseAlertCount,
       }}
     >
       {children}
