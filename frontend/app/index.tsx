@@ -1,24 +1,10 @@
-import { Text, View, StyleProp, ViewStyle, Image, TouchableOpacity } from 'react-native';
+import { View, Text, ActivityIndicator } from "react-native";
+import React from "react";
 
-export default function Index() {
-    return (
-        <View style={styles.container}>
-            <TouchableOpacity onPress={() => alert('Flame button pressed!')}>
-                <Image source={require('../assets/images/flame.png')} style={styles.flameButton} />
-            </TouchableOpacity>
-        </View>
-    );
+export default function StartPage() {
+  return (
+    <View className="flex-1 justify-center items-center">
+      <ActivityIndicator size="large" color="gray" />
+    </View>
+  );
 }
-
-const styles = {
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    } as StyleProp<ViewStyle>,
-    flameButton: {
-        width: 100,
-        height: 100,
-        resizeMode: 'contain',
-    } as StyleProp<ViewStyle>,
-};
