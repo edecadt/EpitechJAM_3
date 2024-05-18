@@ -8,11 +8,7 @@ FireAlert is a mobile application designed to quickly report fires using geoloca
 - [Technologies](#technologies)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Configuration](#configuration)
 - [Running the Application](#running-the-application)
-- [Deployment](#deployment)
-- [License](#license)
-- [Contact](#contact)
 
 ## Project Objective
 Develop a mobile application that allows users to quickly report fires using geolocation and visualize the reported fires on an interactive map.
