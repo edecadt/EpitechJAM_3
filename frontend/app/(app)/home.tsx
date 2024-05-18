@@ -1,6 +1,7 @@
 import { View, Text, Pressable } from "react-native";
 import React from "react";
 import { useAuth } from "@/context/authContext";
+import FireButton from "@/components/FireButton";
 
 export default function Home() {
   const { logout, user } = useAuth();
@@ -15,6 +16,7 @@ export default function Home() {
       <Pressable onPress={handleLogout}>
         <Text>Logout</Text>
       </Pressable>
+      <FireButton />
     </View>
   );
 }
