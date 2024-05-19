@@ -22,7 +22,7 @@ import { useAuth } from "@/context/authContext";
 export default function SignIn() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const { login, resetPassword } = useAuth();
 
   const emailRef = useRef("");
   const passwordRef = useRef("");
@@ -41,6 +41,25 @@ export default function SignIn() {
       Alert.alert("Connexion", response.msg);
       return;
     }
+  };
+
+  const handleResetPassword = async () => {
+    if (!emailRef.current) {
+      Alert.alert(
+        "Mot de passe oublié",
+        "Veuillez entrer votre adresse e-mail"
+      );
+      return;
+    }
+    setLoading(true);
+    const response = await resetPassword(emailRef.current);
+
+    setLoading(false);
+    if (!response.success) {
+      Alert.alert("Mot de passe oublié", response.msg);
+      return;
+    }
+    Alert.alert("Mot de passe oublié", response.msg);
   };
 
   return (
@@ -102,12 +121,14 @@ export default function SignIn() {
                   />
                 </TouchableOpacity>
               </View>
-              <Text
-                style={{ fontSize: hp(1.8) }}
-                className="font-semibold text-right text-neutral-500 pt-2"
-              >
-                Mot de passe oublié ?
-              </Text>
+              <TouchableOpacity onPress={handleResetPassword}>
+                <Text
+                  style={{ fontSize: hp(1.8) }}
+                  className="font-semibold text-right text-neutral-500 pt-2"
+                >
+                  Mot de passe oublié ?
+                </Text>
+              </TouchableOpacity>
             </View>
 
             <View>

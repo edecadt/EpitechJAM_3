@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth, db } from "@/firebaseConfig";
 import { doc, getDoc, addDoc, setDoc } from "firebase/firestore";
@@ -127,6 +128,21 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const resetPassword = async (email) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      return { success: true, msg: "Email de réinitialisation envoyé" };
+    } catch (error) {
+      let msg = error.message;
+      if (msg.includes("auth/invalid-email"))
+        msg = "L'adresse email est invalide";
+      if (msg.includes("auth/user-not-found"))
+        msg = "Utilisateur non trouvé avec cette adresse email";
+
+      return { success: false, msg };
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -136,6 +152,7 @@ export const AuthContextProvider = ({ children }) => {
         logout,
         register,
         increaseAlertCount,
+        resetPassword,
       }}
     >
       {children}
