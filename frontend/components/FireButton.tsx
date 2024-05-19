@@ -83,13 +83,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   fireButton: {
-    width: 150, // Reduce this value to make the button smaller
-    height: 150, // Reduce this value to make the button smaller
+    width: 150,
+    height: 150,
     marginBottom: 20,
     marginLeft: -20,
-    borderRadius: 100, // Half of the width and height
-    borderWidth: 1.2, // Width of the border
-    borderColor: 'white', // Color of the border
-    backgroundColor: 'white', // Fill the circle with white color
+    borderRadius: 100,
+    borderWidth: 1.2,
+    borderColor: 'white',
+    backgroundColor: 'white',
   },
 });
