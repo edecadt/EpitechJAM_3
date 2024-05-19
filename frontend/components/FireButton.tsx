@@ -83,9 +83,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   fireButton: {
-    width: 250,
-    height: 250,
+    width: 150,
+    height: 150,
     marginBottom: 20,
     marginLeft: -20,
+    borderRadius: 100,
+    borderWidth: 1.2,
+    borderColor: 'white',
+    backgroundColor: 'white',
   },
 });

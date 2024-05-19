@@ -18,7 +18,7 @@ export default function ToolBar() {
         bottom: 0,
         right: 0,
         left: 0,
-        height: 60,
+        height: 90,
         backgroundColor: "white",
         borderTopWidth: 1,
         borderTopColor: "#ccc",
