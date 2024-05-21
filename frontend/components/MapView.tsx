@@ -93,7 +93,6 @@ export default function Map() {
               fillColor="rgba(0, 0, 255, 0.1)"
               strokeColor="rgba(0, 0, 255, 0.3)"
               strokeWidth={2}
-              style={styles.circle}
             />
           </>
         )}
@@ -113,11 +112,5 @@ const styles = StyleSheet.create({
   map: {
     width: "100%",
     height: "100%",
-  },
-  marker: {
-    // Ajoutez les styles pour le marker si nécessaire
-  },
-  circle: {
-    // Ajoutez les styles pour le cercle si nécessaire
   },
 });
