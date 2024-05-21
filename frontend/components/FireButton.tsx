@@ -1,44 +1,24 @@
-import {
-  View,
-  Text,
-  Button,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  Alert,
-  PermissionsAndroid,
-  Platform,
-} from "react-native";
-import React, { useEffect, useState } from "react";
-import * as Location from "expo-location";
+import React from "react";
+import { View, Image, StyleSheet, TouchableOpacity, Alert } from "react-native";
+import { ref, push, set } from "firebase/database";
 import { database } from "@/firebaseConfig";
-import { push, ref, set } from "firebase/database";
 import { useAuth } from "@/context/authContext";
+import { LocationObject } from "expo-location";
 
-export default function FireButton() {
-  const [location, setLocation] = useState<Location.LocationObject | null>(
-    null
-  );
-  const { logout, user, increaseAlertCount } = useAuth();
+interface FireButtonProps {
+  location: LocationObject | null;
+}
 
-  const getPermission = async () => {
-    const { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== "granted") {
-      console.error("Permission to access location was denied");
-      return;
-    }
-  };
+export default function FireButton({ location }: FireButtonProps) {
+  const { user, increaseAlertCount } = useAuth();
 
-  const getLocation = async () => {
-    let { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== "granted") {
-      console.error("Permission to access location was denied");
+  const handlePress = async () => {
+    if (!location) {
+      Alert.alert("Erreur", "Localisation non disponible.");
       return;
     }
 
     try {
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
       const locationsRef = ref(database, "locations");
       const newLocationRef = push(locationsRef);
       await set(newLocationRef, {
@@ -53,20 +33,13 @@ export default function FireButton() {
       );
       increaseAlertCount();
     } catch (error) {
-      Alert.alert(
-        "Erreur",
-        "Échec de l'envoi de l'alerte. Veuillez réessayer."
-      );
+      Alert.alert("Erreur", "Échec de l'envoi de l'alerte. Veuillez réessayer.");
     }
   };
 
-  useEffect(() => {
-    getPermission();
-  }, []);
-
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={getLocation}>
+      <TouchableOpacity onPress={handlePress}>
         <Image
           style={styles.fireButton}
           source={require("../assets/fire_button.png")}
@@ -78,18 +51,18 @@ export default function FireButton() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    position: "absolute",
+    bottom: 75,
+    right : 20,
+    alignSelf: "center",
   },
   fireButton: {
-    width: 150,
-    height: 150,
+    width: 100,
+    height: 100,
     marginBottom: 20,
-    marginLeft: -20,
     borderRadius: 100,
     borderWidth: 1.2,
-    borderColor: 'white',
-    backgroundColor: 'white',
+    borderColor: 'black',
+    backgroundColor: '#303030',
   },
 });

@@ -8,6 +8,6 @@ type LoadingProps = {
 
 export default function Loading({ size }: LoadingProps) {
   return <View style={{ height: size, aspectRatio: 1 }}>
-    <LottieView style={{ flex: 1 }} source={require("../assets/loading.json")} autoPlay loop />    
+    <LottieView style={{ flex: 1 }} source={require("../assets/loading.json")} autoPlay loop />
   </View>;
 }

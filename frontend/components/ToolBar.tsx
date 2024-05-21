@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import FireButton from "./FireButton";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import { useAuth } from "@/context/authContext";
 
@@ -19,9 +18,9 @@ export default function ToolBar() {
         right: 0,
         left: 0,
         height: 90,
-        backgroundColor: "white",
+        backgroundColor: "#303030",
         borderTopWidth: 1,
-        borderTopColor: "#ccc",
+        borderTopColor: "#303030",
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
@@ -36,19 +35,17 @@ export default function ToolBar() {
           alignItems: "center",
         }}
       >
-        <View className="flex items-center flex-row gap-0 bg-indigo-500 pl-2 rounded-xl">
+        <View className="flex items-center flex-row gap-0 bg-zinc-700 pl-2 rounded-xl">
           <Text style={{ marginRight: -10 }} className="text-white pr-1">
             {user?.alertCount}
           </Text>
           <Image
             style={{ width: 50, height: 50, marginLeft: -10 }}
-            source={require("../assets/fire_button.png")}
-          />
+            source={require("../assets/fire_button.png") }
+            />
         </View>
-
-        <FireButton />
         <TouchableOpacity onPress={handleLogout}>
-          <SimpleLineIcons name="logout" size={24} color={"#6366f1"} />
+          <SimpleLineIcons name="logout" size={24} color={"#A1A1AA"} />
         </TouchableOpacity>
       </View>
     </View>
